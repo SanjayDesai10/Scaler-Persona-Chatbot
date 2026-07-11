@@ -1,0 +1,39 @@
+# Environment variables - NEVER commit real keys
+.env
+.env.local
+.env.production
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Build outputs
+dist/
+build/
+*/dist/
+*/build/
+
+# macOS
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+
+# AI Tooling & Metadata
+.agents/
+.gemini/
+.copilot/
+.cline/
+task.md
+walkthrough.md
+implementation_plan.md
+
+# Guides (optional helper instructions)
+backend_guide.md
+
+
