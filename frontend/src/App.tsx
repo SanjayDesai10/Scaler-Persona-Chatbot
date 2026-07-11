@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Send, RotateCcw, MessageSquare, ShieldAlert, Sparkles, User, ChevronRight, Brain, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
+import { Send, RotateCcw, MessageSquare, ShieldAlert, Sparkles, Brain, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 
 // Define Types
 interface Message {
@@ -80,8 +80,6 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [sidebarOpen, setSidebarOpen] = useState(true)
   
-  // Expanded state for Reasoning/CoT blocks per message ID
-  const [expandedReasoning, setExpandedReasoning] = useState<Record<string, boolean>>({})
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
@@ -153,7 +151,6 @@ export default function App() {
       abortControllerRef.current = null
     }
     setErrorMessage(null)
-    setExpandedReasoning({})
     try {
       await fetch(`${import.meta.env.VITE_API_BASE_URL || ''}/api/v1/chat`, {
         method: 'PATCH',
@@ -171,13 +168,6 @@ export default function App() {
     }
   }
 
-  // Toggle Reasoning Accordion
-  const toggleReasoning = (messageId: string) => {
-    setExpandedReasoning(prev => ({
-      ...prev,
-      [messageId]: !prev[messageId]
-    }))
-  }
 
   // Send Message to API
   const handleSendMessage = async (textToSend: string) => {
@@ -284,15 +274,7 @@ export default function App() {
           }
         })
 
-        // Automatically expand reasoning if thinking exists and wasn't expanded yet
-        if (thinking) {
-          setExpandedReasoning(prev => {
-            if (prev[assistantMessageId] === undefined) {
-              return { ...prev, [assistantMessageId]: true }
-            }
-            return prev
-          })
-        }
+
       }
 
     } catch (err: any) {
