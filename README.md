@@ -4,8 +4,8 @@ Full-stack chat UI with three persona-specific system prompts (Anshuman Singh, A
 
 ## Live demo
 
-[Live Demo Link](https://scaler-bot.akshat21.me/)
-[Backend Link](https://scaler-persona-genai.onrender.com)
+[Live Demo Link](https://scaler-persona-chatbot-beta.vercel.app/)
+[Backend Link](https://scaler-persona-chatbot-backend.onrender.com)
 
 ## Screenshots
 
