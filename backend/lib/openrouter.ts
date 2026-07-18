@@ -16,11 +16,11 @@ const client = new OpenRouter({
 export const sendMessage = async (messages: ChatMessages[], res?: any) => {
   const stream = await client.chat.send({
     chatRequest: {
-      model: "meta-llama/llama-3.1-8b-instruct:free",
+      model: "openai/gpt-oss-20b:free",
       messages,
       stream: true,
       temperature: 0.7,
-      maxTokens: 200,
+      maxTokens: 1000,
     },
   });
 
